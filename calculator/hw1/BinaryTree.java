@@ -1,4 +1,4 @@
-package ce326.hw1;
+package calculator.hw1;
 
 public class BinaryTree {
     node root;
@@ -80,7 +80,7 @@ public class BinaryTree {
         int leftLimit = 0; 
         StringBuilder str = new StringBuilder(string);
         
-        // AN YPARXOUN PAREN8ESEIS STHN ARXH KAI TO TELOS
+        // look for parenthesis at the beginning and end of the string
         int parenthesis=0;
         int closeParenthesis=0;
         if(str.charAt(0)=='('){

@@ -1,4 +1,4 @@
-package ce326.hw1;
+package calculator.hw1;
 
 public class node {
     node right, left;

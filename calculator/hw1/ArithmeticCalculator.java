@@ -1,7 +1,8 @@
-package ce326.hw1;
+package calculator.hw1;
 import static java.lang.Character.isDigit;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.Scanner;
 /**
  *
  * @author aggeliki
@@ -22,38 +23,39 @@ public class ArithmeticCalculator {
         int j=0;
         for(int i=0; i<expression.length(); i++){
             char curr = expression.charAt(i);
-            //( poy den kleinei     h      ) xwris (
+            // look for unclosed or unopened parenthesis
             if(curr == '('){j++;}
             if(curr == ')'){j--;}
             
-            //INVALID CHARACTER  ###############################################
+            //invalid character
             if(!(isDigit(curr) /*|| isLetter(curr)*/ || (curr=='.') || (curr=='+') || (curr=='-') || (curr=='/') || (curr=='*') || (curr=='^') || (curr=='x') || (curr==' ') || (curr==')') || (curr=='('))){ 
                 System.out.print("\n[ERROR] Invalid character\n");
                 return;
             }  
         }
-        //PARAPANW PARENTHESIS  ################################################
-        if(j>0){
+
+        if(j>0){ // unclosed parenthesis
             System.out.print("\n[ERROR] Not closing opened parenthesis\n");
             return;
         }
-        if(j<0){  
+        if(j<0){ // unopened parenthesis
             System.out.print("\n[ERROR] Closing unopened parenthesis\n");   
             return;
         }
-        //TELESTHS STO TELOS H THN ARXH   ######################################
+        // operator at the beginning of expression
         char curr = expression.charAt(0);
         if((curr=='+') || (curr=='-') || (curr=='/') || (curr=='*') || (curr=='^') || (curr=='x')){
             System.out.print("\n[ERROR] Starting or ending with operator\n");
             return;
         }
+        // operator at the end of expression
         curr = expression.charAt(expression.length()-1);
         if((curr=='+') || (curr=='-') || (curr=='/') || (curr=='*') || (curr=='^') || (curr=='x')){
             System.out.print("\n[ERROR] Starting or ending with operator\n");
             return;
         }
         
-        //ARI8MOS ARI8MOS   ####################################################
+        //number after number
         Pattern p = Pattern.compile("\\d\\s\\d");
         Matcher m = p.matcher(expression);
         if(m.find()) {
@@ -67,42 +69,42 @@ public class ArithmeticCalculator {
             return;
         }
         
-        //TELESTHS TELESTHS  ###################################################
+        //operator after operator
         p = Pattern.compile("[\\p{Punct}&&[^()]][\\p{Punct}&&[^()]]");
         m = p.matcher(expression);
         if(m.find()) {
             System.out.print("\n[ERROR] Consecutive operators\n");
             return;
         }
-        //  (+  ################################################################
+        //operator after parenthesis  (+
         p = Pattern.compile("\\([\\p{Punct}&&[^()]]");
         m = p.matcher(expression);
         if(m.find()) {
             System.out.print("\n[ERROR] Operator appears after opening parenthesis\n");
             return;
         }
-        //  +)  ################################################################
+        //operator before parenthesis +)
         p = Pattern.compile("[\\p{Punct}&&[^()]]\\)");
         m = p.matcher(expression);
         if(m.find()) {
             System.out.print("\n[ERROR] Operator appears before closing parenthesis\n");
             return;
         }
-        //  )(  ################################################################
+        //open parenthesis after close parenthesis )(
         p = Pattern.compile("\\)\\(");
         m = p.matcher(expression);
         if(m.find()) {
             System.out.print("\n[ERROR] ')' appears before opening parenthesis\n");
             return;
         }
-        // 3( ##################################################################
+        //number before open parenthesis 3(
         p = Pattern.compile("\\d\\(");
         m = p.matcher(expression);
         if(m.find()) {
             System.out.print("\n[ERROR] Operand before opening parenthesis\n");
             return;
         }
-        // )3   ################################################################
+        //number after close parenthesis )3
         p = Pattern.compile("\\)\\d");
         m = p.matcher(expression);
         if(m.find()) {
