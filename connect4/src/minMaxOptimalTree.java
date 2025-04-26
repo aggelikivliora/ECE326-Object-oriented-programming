@@ -1,4 +1,4 @@
-package ce326.hw3;
+package connect4.src;
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.MIN_VALUE;
 public class minMaxOptimalTree {

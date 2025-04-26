@@ -1,4 +1,4 @@
-package ce326.hw3;
+package connect4.src;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

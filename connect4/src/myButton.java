@@ -1,4 +1,4 @@
-package ce326.hw3;
+package connect4.src;
 
 import javax.swing.JButton;
 import java.awt.*;
