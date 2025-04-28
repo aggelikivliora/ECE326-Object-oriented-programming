@@ -25,5 +25,5 @@ Database.o: Database.cpp Database.hpp Pixel.hpp
 Token.o: Token.cpp Token.hpp Pixel.hpp
 	g++ -Wall -g -std=c++11 -fsanitize=address Token.cpp -c
 clean :
-	rm *.o -f hw4
+	rm *.ppm *.pgm *.o -f hw4
 	

@@ -49,8 +49,8 @@ int main(){
                 continue;
             }        
             int size = filename.length();
-            char file[size];
-            for(int i=0; i<size; i++){
+            char file[size+1];
+            for(int i=0; i<=size; i++){
                 file[i]=filename[i];
             }
             file[size]='\0';
